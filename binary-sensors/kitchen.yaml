@@ -4,3 +4,4 @@
   device_class: motion
   entities:
     - binary_sensor.kitchen_rear_sensor_occupancy
+    - binary_sensor.kitchen_front_sensor_occupancy
