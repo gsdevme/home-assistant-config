@@ -1,0 +1,10 @@
+.storage/
+*.db
+*.db*
+*.log
+*.log.*
+.HA_VERSION
+tts/*
+secrets.yaml
+esphome/*
+custom_*/*
