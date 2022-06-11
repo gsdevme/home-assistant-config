@@ -1,0 +1,6 @@
+- platform: group
+  name: "Kitchen Motion"
+  unique_id: "kitchen_motion"
+  device_class: motion
+  entities:
+    - binary_sensor.kitchen_rear_sensor_occupancy
