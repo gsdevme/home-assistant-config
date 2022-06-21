@@ -1,0 +1,8 @@
+- platform: group
+  name: "Hall or Landing Motion"
+  unique_id: "hall_or_landing_motion"
+  device_class: motion
+  entities:
+    - binary_sensor.landing_sensor_bookcase_occupancy
+    - binary_sensor.landing_sensor_occupancy
+    - binary_sensor.hall_sensor_occupancy

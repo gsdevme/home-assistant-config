@@ -9,6 +9,51 @@ sensor: !include_dir_merge_list sensors/
 binary_sensor: !include_dir_merge_list binary-sensors/
 switch: !include_dir_merge_list switches/
 
+logbook:
+  exclude:
+    entity_globs:
+      - "*led_indication"
+      - "*occupancy_timeout"
+      - "*illuminance_lux"
+      - "*illuminance"
+      - "*motion_sensitivity"
+      - "*update_available"
+
 automation: !include_dir_merge_list automations/
 script: !include scripts.yaml
 scene: !include scenes.yaml
+
+light:
+  - platform: group
+    name: hall_lights
+    entities:
+      - light.hall_wall_office_light
+      - light.hall_wall_livingroom_light
+  - platform: group
+    name: all_living_room_lights
+    entities:
+      - light.living_room_lamp
+      - light.living_room_playbar
+  #      - light.living_room_light
+  #      - light.living_room_light_strip
+  - platform: group
+    name: downstairs_lights
+    entities:
+      - light.hall_light
+      - light.the_living_room_lights
+      - light.downstairs_cupboard_light
+      - light.kitchen_rear_light
+  - platform: group
+    name: upstairs_lights
+    entities:
+      - light.master_bedroom_light
+      - light.master_bedroom_lamp
+      - light.office_light
+      - light.landing_light
+      - light.spare_bedroom_light
+      - light.upstairs_cupboard
+  - platform: group
+    name: all_lights
+    entities:
+      - light.upstairs_lights
+      - light.downstairs_lights
