@@ -1,28 +1,9 @@
-- alias: "Turn on hall & landing light when there is movement"
-  id: "turn_on_hall_and_landing_when_movement"
-  trigger:
-    platform: state
-    entity_id: binary_sensor.hall_or_landing_motion
-    to: "on"
-  action:
-    service: light.turn_on
-    target:
-      entity_id: light.hall_lights
-    data:
-      brightness: 254
-      transition: 1
-
-- alias: "Turn off hall/landing light 3 minutes after last movement"
-  id: "turn_off_hall_and_landing_after_3_minutes_of_no_movement"
-  trigger:
-    platform: state
-    entity_id: binary_sensor.hall_or_landing_motion
-    to: "off"
-    for:
-      minutes: 3
-  action:
-    service: light.turn_off
-    target:
-      entity_id: light.hall_lights
-    data:
-      transition: 10
+- id: "1654940898623"
+  alias: Hall/Landing Lights
+  description: ""
+  use_blueprint:
+    path: homeassistant/motion_light.yaml
+    input:
+      motion_entity: binary_sensor.hall_or_landing_motion
+      light_target:
+        entity_id: light.hall_lights

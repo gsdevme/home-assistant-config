@@ -1,0 +1,9 @@
+# ATM there is no way to know this vs solar due to hybrid inverter
+- sensor:
+    - name: "Battery Export Power"
+      unique_id: "battery_export_power"
+      device_class: power
+      state_class: measurement
+      unit_of_measurement: "W"
+      state: >
+        0

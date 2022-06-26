@@ -9,6 +9,35 @@ sensor: !include_dir_merge_list sensors/
 binary_sensor: !include_dir_merge_list binary-sensors/
 switch: !include_dir_merge_list switches/
 
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.16.16.17
+    - 127.0.0.1
+    - ::1
+
+alexa:
+  smart_home:
+    locale: en-GB
+    filter:
+      include_entities:
+        - light.master_bedroom_light
+        - light.master_bedroom_lamp
+        - light.all_lights
+        - switch.mqtt_guest_mode_switch
+        - vacuum.jeff
+    entity_config:
+      switch.mqtt_guest_mode_switch:
+        name: "Guest Mode"
+      vacuum.jeff:
+        name: "Jeff"
+      light.all_lights:
+        name: "Everything"
+      light.master_bedroom_light:
+        name: "Master Bedroom Light"
+      light.master_bedroom_lamp:
+        name: "Master Bedroom Lamp"
+
 logbook:
   exclude:
     entity_globs:
@@ -22,6 +51,7 @@ logbook:
 automation: !include_dir_merge_list automations/
 script: !include scripts.yaml
 scene: !include scenes.yaml
+template: !include_dir_merge_list templates/
 
 light:
   - platform: group
