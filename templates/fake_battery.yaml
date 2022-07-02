@@ -2,8 +2,8 @@
 - sensor:
     - name: "Battery Export Power"
       unique_id: "battery_export_power"
-      device_class: power
-      state_class: measurement
-      unit_of_measurement: "W"
+      device_class: energy
+      state_class: total_increasing
+      unit_of_measurement: "kWh"
       state: >
-        0
+        {{ float(0) }}

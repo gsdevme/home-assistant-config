@@ -1,6 +1,9 @@
 # Loads default set of integrations. Do not remove.
 default_config:
 
+homeassistant:
+  customize: !include customize.yaml
+
 # Text to speech
 tts:
   - platform: google_translate
@@ -33,6 +36,8 @@ alexa:
         name: "Jeff"
       light.all_lights:
         name: "Everything"
+      light.the_living_room_lights:
+        name: "Living Room Lights"
       light.master_bedroom_light:
         name: "Master Bedroom Light"
       light.master_bedroom_lamp:

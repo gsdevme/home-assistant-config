@@ -1,6 +1,0 @@
-- platform: integration
-  source: sensor.battery_export_power
-  name: solar_battery_export_kwh
-  unit_prefix: k
-  round: 2
-  method: left

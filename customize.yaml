@@ -1,0 +1,6 @@
+sensor.solar_battery_energy:
+  friendly_name: "Battery Charge from Grid"
+sensor.solar_battery_energy_returned:
+  friendly_name: "PV/Battery Generation"
+sensor.grid_energy:
+  friendly_name: "Grid Usage"

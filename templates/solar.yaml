@@ -1,0 +1,45 @@
+- sensor:
+    # Negative number means we are exporting to the grid
+    - name: "Grid Export Power"
+      unique_id: "grid_export_power"
+      device_class: power
+      state_class: measurement
+      unit_of_measurement: "W"
+      state: >
+        {% if states('sensor.grid_power')| float(0) < 0 %}
+          {{ (states('sensor.grid_power') | float(0)) | abs | round(0, 'floor') }}
+        {% else %}
+          0
+        {% endif %}
+    # Positive number means we are buying from the grid
+    - name: "Grid Energy Power"
+      unique_id: "grid_energy_power"
+      device_class: power
+      state_class: measurement
+      unit_of_measurement: "W"
+      state: >
+        {% if states('sensor.grid_power') | float(0) <= 0 %}
+          0
+        {% else %}
+          {{ states('sensor.grid_power') | float(0) | round(0, 'ceil') }}
+        {% endif %}
+    # Negative number means we are generating
+    - name: "Solar Generating Power"
+      unique_id: "solar_generating_power"
+      device_class: power
+      state_class: measurement
+      unit_of_measurement: "W"
+      state: >
+        {% if states('sensor.solar_battery_power')| float(0) < 10 %}
+          {{ (states('sensor.solar_battery_power') | float(0)) | abs | round(0, 'floor') }}
+        {% else %}
+          0
+        {% endif %}
+    # Power usage
+    - name: "Power Usage"
+      unique_id: "power_usage"
+      device_class: power
+      state_class: measurement
+      unit_of_measurement: "W"
+      state: >
+        {{ (states('sensor.grid_energy_power') | float(0)) + ((states('sensor.solar_generating_power') | float(0)) - (states('sensor.grid_export_power') | float(0))) }}
