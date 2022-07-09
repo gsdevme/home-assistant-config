@@ -43,3 +43,15 @@
       unit_of_measurement: "W"
       state: >
         {{ (states('sensor.grid_energy_power') | float(0)) + ((states('sensor.solar_generating_power') | float(0)) - (states('sensor.grid_export_power') | float(0))) }}
+    # immersion is actually wired the wrong way so flip it
+    - name: "Water Heater"
+      unique_id: "immersion_water_heater"
+      device_class: power
+      state_class: measurement
+      unit_of_measurement: "W"
+      state: >
+        {% if states('sensor.immersion_power') | float(0) <= 10 %}
+          {{ states('sensor.immersion_power') | float(0) | round(0, 'ceil') | abs }}
+        {% else %}
+          0
+        {% endif %}
