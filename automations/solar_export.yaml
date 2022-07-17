@@ -1,0 +1,18 @@
+- alias: "[Solar] Needless export happening"
+  id: "solar_export_happening"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.grid_export_power
+      above: 500
+      for:
+        minutes: 15
+    - platform: numeric_state
+      entity_id: sensor.home_battery
+      above: 80
+      for:
+        minutes: 15
+  action:
+    service: notify.gavin_pushover
+    data:
+      message: "Power is being exported, turn something on"
+      title: "Grid Export Happening"

@@ -40,6 +40,8 @@ trigger:
 action:
   - alias: "Turn on the light"
     service: light.turn_on
+    data_template:
+      brightness_pct: "{{ states('input_number.adaptive_light_brightness') }}"
     target: !input light_target
   - alias: "Wait until there is no motion from device"
     wait_for_trigger:

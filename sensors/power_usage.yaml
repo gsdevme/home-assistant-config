@@ -1,0 +1,16 @@
+- platform: statistics
+  name: "avg_grid_power_for_10mins"
+  entity_id: sensor.grid_power
+  state_characteristic: mean
+  max_age:
+    minutes: 10
+  sampling_size: 500
+  precision: 1
+- platform: statistics
+  name: "avg_power_usage_for_10mins"
+  entity_id: sensor.power_usage
+  state_characteristic: mean
+  max_age:
+    minutes: 10
+  sampling_size: 500
+  precision: 1

@@ -1,4 +1,4 @@
-- alias: "Turn on living room light when pressed on"
+- alias: "[Living Room] Turn on living room light when pressed on"
   id: "turn_on_living_room_light_when_pressed"
   trigger:
     platform: state
@@ -12,7 +12,7 @@
       brightness: 230
       xy_color: [0.472, 0.413]
 
-- alias: "Turn off living room light when pressed off"
+- alias: "[Living Room] Turn off living room light when pressed off"
   id: "turn_off_living_room_light_when_pressed"
   trigger:
     platform: state

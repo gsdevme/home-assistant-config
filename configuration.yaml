@@ -8,6 +8,44 @@ homeassistant:
 tts:
   - platform: google_translate
 
+input_boolean:
+  has_motion_downstairs_today:
+    name: Has been motion downstairs today
+    icon: mdi:car
+
+input_number:
+  adaptive_light_brightness:
+    name: Adaptive Light Brightness
+    icon: mdi:lightbulb
+    max: 100
+    initial: 100
+    min: 1
+
+notify:
+  - name: gavin_pushover
+    platform: pushover
+    api_key: !secret PUSHOVER_API_KEY
+    user_key: !secret PUSHOVER_USER_KEY
+
+mqtt:
+  binary_sensor:
+    - unique_id: "solis_inverter_battery_charging_status"
+      name: "Home Battery Charging Status"
+      state_topic: "solis/1298491919448736814/battery_charging"
+      expire_after: 1200
+      payload_on: "on"
+      payload_off: "off"
+      device_class: "battery_charging"
+  sensor:
+    - unique_id: "solis_inverter_battery"
+      name: "Home Battery"
+      state_topic: "solis/1298491919448736814/battery_percent"
+      unit_of_measurement: "%"
+      expire_after: 1200
+      value_template: "{{ value_json }}"
+      device_class: "battery"
+      json_attributes_topic: "solis/1298491919448736814/attributes"
+
 sensor: !include_dir_merge_list sensors/
 binary_sensor: !include_dir_merge_list binary-sensors/
 switch: !include_dir_merge_list switches/
@@ -16,8 +54,17 @@ http:
   use_x_forwarded_for: true
   trusted_proxies:
     - 172.16.16.17
+    - 172.16.16.62
+    - 172.16.16.61
+    - 172.16.16.60
     - 127.0.0.1
     - ::1
+
+lovelace:
+  mode: yaml
+  resources:
+    - url: /local/layout-card.js
+      type: module
 
 alexa:
   smart_home:

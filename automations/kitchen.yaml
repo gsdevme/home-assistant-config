@@ -1,6 +1,6 @@
-- id: '1654940898621'
-  alias: Kitchen Lights
-  description: ''
+- id: "1654940898621"
+  alias: "[Kitchen] Kitchen Lights"
+  description: ""
   use_blueprint:
     path: homeassistant/motion_light.yaml
     input:

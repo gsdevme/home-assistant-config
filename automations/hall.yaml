@@ -1,5 +1,5 @@
 - id: "1654940898623"
-  alias: Hall/Landing Lights
+  alias: "[Hall] Hall/Landing Lights"
   description: ""
   use_blueprint:
     path: homeassistant/motion_light.yaml

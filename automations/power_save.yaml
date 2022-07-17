@@ -1,0 +1,23 @@
+- alias: "[Power Save] Turn on devices for start of the day"
+  id: "turn_on_devices_for_start_of_the_day"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.has_motion_downstairs_today
+      to: "on"
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.tv_stand
+        - switch.my_office_setup_plug
+
+- alias: "[Power Save] Turn off devices for end of the day"
+  id: "turn_off_devices_for_end_of_the_day"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.has_motion_downstairs_today
+      to: "off"
+  action:
+    - service: switch.turn_off
+      entity_id:
+        - switch.tv_stand
+        - switch.my_office_setup_plug

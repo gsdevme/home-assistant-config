@@ -1,0 +1,16 @@
+- sensor:
+    - name: "Estimate of Battery Life"
+      unique_id: "estimate_of_battery_remaining"
+      state: >
+        {% set battery_percentage = states('sensor.home_battery') | float(0) %}
+
+        # 10kwh of storage and 80% DoD
+        {{ (10500/100) * (battery_percentage-20) }}
+    - name: "Estimate of Battery Life in Hours"
+      unique_id: "estimate_of_battery_remaining_in_hours"
+      unit_of_measurement: h
+      state: >
+        {% set battery = states('sensor.estimate_of_battery_life') | float(1) %}
+        {% set usage = states('sensor.power_usage') | float(1) %}
+
+        {{ ((battery / usage) | round(1, 'ceil')) }}
