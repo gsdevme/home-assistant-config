@@ -5,12 +5,10 @@
       entity_id: sensor.grid_export_power
       above: 500
       for:
-        minutes: 15
+        minutes: 20
     - platform: numeric_state
       entity_id: sensor.home_battery
       above: 80
-      for:
-        minutes: 15
   action:
     service: notify.gavin_pushover
     data:

@@ -1,0 +1,6 @@
+- sensor:
+    - name: "Forecast Temperature"
+      unique_id: "forecast_temperature"
+      state_class: measurement
+      unit_of_measurement: "°C"
+      state: "{{ state_attr('weather.home', 'temperature') }}"

@@ -1,22 +1,22 @@
-- alias: "[Sun] Reduce light levels when sun sets"
-  id: "reduce_light_levels_when_sun_sets"
-  trigger:
-    - platform: sun
-      event: sunset
-      id: Sunset
-      offset: "-00:45:00"
-  action:
-    - service: input_number.set_value
-      entity_id: input_number.adaptive_light_brightness
-      data:
-        value: 40
+# - alias: "[Sun] Reduce light levels when sun sets"
+#   id: "reduce_light_levels_when_sun_sets"
+#   trigger:
+#     - platform: sun
+#       event: sunset
+#       id: Sunset
+#       offset: "-00:45:00"
+#   action:
+#     - service: input_number.set_value
+#       entity_id: input_number.adaptive_light_brightness
+#       data:
+#         value: 60
 
 - alias: "[Sun] Increase light levels when sun raises"
   id: "increase_light_levels_when_sun_sets"
   trigger:
     - platform: sun
       event: sunrise
-      offset: "-00:15:00"
+      offset: "+00:45:00"
   action:
     - service: input_number.set_value
       entity_id: input_number.adaptive_light_brightness

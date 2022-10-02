@@ -1,0 +1,34 @@
+blueprint:
+  name: HueSwitch-activated Light
+  description: Turn on/off a light when switch is switched.
+  domain: automation
+  input:
+    switch_entity:
+      name: Switch
+      selector:
+        entity:
+          domain: sensor
+    target_light:
+      name: Light
+      selector:
+        target:
+          entity:
+            domain: light
+
+mode: restart
+max_exceeded: silent
+
+trigger:
+  platform: state
+  entity_id: !input switch_entity
+
+action:
+  - alias: "Toggle light"
+    service: >
+      {% if trigger.to_state.state == "on_press" %}
+        light.turn_on
+      {% elseif trigger.to_state.state == "off_press"  %}
+        light.turn_off
+      {% else %}
+      {% endif %}
+    target: !input target_light

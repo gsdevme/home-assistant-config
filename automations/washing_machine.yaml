@@ -1,0 +1,26 @@
+- id: "1658909159598"
+  alias: Washing Machine
+  description: ""
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.washing_machine_power
+      for:
+        minutes: 5
+      above: "1000"
+  condition: []
+  action:
+    - wait_for_trigger:
+        - platform: numeric_state
+          entity_id: sensor.washing_machine_power
+          for:
+            minutes: 10
+          below: "5"
+    - service: notify.gavin_pushover
+      data:
+        message: Washing Machine is done
+        title: Washing Machine
+    # - service: tts.google_translate_say
+    #   data:
+    #     entity_id: media_player.kitchen
+    #     message: The Washing Machine has finished
+    #     cache: true

@@ -65,6 +65,8 @@ lovelace:
   resources:
     - url: /local/layout-card.js
       type: module
+    - url: /local/history-explorer-card.js
+      type: module
 
 alexa:
   smart_home:
@@ -73,12 +75,16 @@ alexa:
       include_entities:
         - light.master_bedroom_light
         - light.master_bedroom_lamp
+        - light.office_light
         - light.all_lights
         - switch.mqtt_guest_mode_switch
+        - light.the_living_room_lights
         - vacuum.jeff
     entity_config:
       switch.mqtt_guest_mode_switch:
         name: "Guest Mode"
+      light.office_light:
+        name: "Office Light"
       vacuum.jeff:
         name: "Jeff"
       light.all_lights:
@@ -105,12 +111,34 @@ script: !include scripts.yaml
 scene: !include scenes.yaml
 template: !include_dir_merge_list templates/
 
+influxdb:
+  username: "home_assistant"
+  password: !secret influx_password
+  include:
+    entities:
+      - sensor.home_battery
+      - sensor.solar_generating_power
+      - sensor.grid_energy_power
+      - sensor.power_usage
+      - sensor.downstairs_kitchen_sensor_humidity
+      - sensor.downstairs_living_room_humidity
+      - sensor.gavins_office_desk_humidity
+      - sensor.downstairs_kitchen_sensor_temperature
+      - sensor.downstairs_living_room_temperature
+      - sensor.gavins_office_desk_temperature
+      - sensor.office_sensor_temperature
+      - sensor.vicare_hot_water_gas_consumption_current_day
+      - sensor.vicare_heating_gas_consumption_current_day
+      - weather.home
+      - sensor.forecast_temperature
+
 light:
   - platform: group
     name: hall_lights
     entities:
       - light.hall_wall_office_light
       - light.hall_wall_livingroom_light
+      - light.hue_light_strip
   - platform: group
     name: all_living_room_lights
     entities:

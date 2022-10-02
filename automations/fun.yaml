@@ -1,0 +1,33 @@
+# - id: "1659690354638"
+#   alias: Welcome Home
+#   description: ""
+#   trigger:
+#     - platform: state
+#       entity_id:
+#         - person.gavin
+#       from: home
+#       to: not_home
+#       for:
+#         hours: 0
+#         minutes: 20
+#         seconds: 0
+#   condition: []
+#   action:
+#     - wait_for_trigger:
+#         - platform: state
+#           entity_id:
+#             - person.gavin
+#           from: "not_home"
+#           to: "home"
+#     - wait_for_trigger:
+#         - platform: state
+#           entity_id:
+#             - binary_sensor.kitchen_motion
+#           from: "off"
+#           to: "on"
+#     - service: tts.google_translate_say
+#       data:
+#         entity_id: media_player.kitchen
+#         message: Welcome Home Gavin
+#         cache: true
+#   mode: single
