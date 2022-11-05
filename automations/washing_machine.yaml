@@ -15,7 +15,7 @@
           for:
             minutes: 10
           below: "5"
-    - service: notify.gavin_pushover
+    - service: notify.pushover
       data:
         message: Washing Machine is done
         title: Washing Machine

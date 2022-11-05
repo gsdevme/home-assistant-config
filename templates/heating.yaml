@@ -1,0 +1,27 @@
+- binary_sensor:
+    # Expensive Heat Pump Temperature
+    - name: "Boiler Flow between 56-65"
+      unique_id: "boiler_flow_below_65"
+      state: >
+        {{ is_state('climate.vicare_heating', 'auto') 
+          and state_attr('climate.vicare_heating', 'temperature') <= 65 
+          and state_attr('climate.vicare_heating', 'temperature') > 55 }}
+    # Okay Heat Pump Temperature
+    - name: "Boiler Flow between 46-55"
+      unique_id: "boiler_flow_below_55"
+      state: >
+        {{ is_state('climate.vicare_heating', 'auto') 
+          and state_attr('climate.vicare_heating', 'temperature') <= 55 
+          and state_attr('climate.vicare_heating', 'temperature') > 45 }}
+    # Perfect Heat Pump Temperature
+    - name: "Boiler Flow at or below 45"
+      unique_id: "boiler_flow_below_45"
+      state: >
+        {{ is_state('climate.vicare_heating', 'auto') 
+          and state_attr('climate.vicare_heating', 'temperature') <= 45 }}
+    # Cannot Heat Pump Temperature
+    - name: "Boiler Flow above 70"
+      unique_id: "boiler_flow_above_70"
+      state: >
+        {{ is_state('climate.vicare_heating', 'auto') 
+          and state_attr('climate.vicare_heating', 'temperature') >= 70 }}

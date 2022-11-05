@@ -1,0 +1,15 @@
+- sensor:
+    - name: "Heating Gas Cost Today"
+      unique_id: "heating_gas_cost"
+      device_class: "monetary"
+      state: >
+        {% set gas = states('sensor.vicare_heating_gas_consumption_current_day') | float(0) %}
+
+        {{ (gas*11) * 0.10 }}
+    - name: "Hot Water Gas Cost Today"
+      unique_id: "hot_water_gas_cost"
+      device_class: "monetary"
+      state: >
+        {% set gas = states('sensor.vicare_hot_water_gas_consumption_current_day') | float(0) %}
+
+        {{ (gas*11) * 0.10 }}

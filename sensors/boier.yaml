@@ -1,0 +1,32 @@
+- platform: history_stats
+  name: Boiler Flow Above 70
+  entity_id: binary_sensor.boiler_flow_above_70
+  state: "on"
+  type: time
+  start: "{{ now().replace(hour=0, minute=0, second=0) }}"
+  duration:
+    hours: 24
+- platform: history_stats
+  name: Boiler Flow Between 56-65
+  entity_id: binary_sensor.boiler_flow_at_or_below_65
+  state: "on"
+  type: time
+  start: "{{ now().replace(hour=0, minute=0, second=0) }}"
+  duration:
+    hours: 24
+- platform: history_stats
+  name: Boiler Flow Between 46-55
+  entity_id: binary_sensor.boiler_flow_between_46_55
+  state: "on"
+  type: time
+  start: "{{ now().replace(hour=0, minute=0, second=0) }}"
+  duration:
+    hours: 24
+- platform: history_stats
+  name: Boiler Flow Below 45
+  entity_id: binary_sensor.boiler_flow_at_or_below_45
+  state: "on"
+  type: time
+  start: "{{ now().replace(hour=0, minute=0, second=0) }}"
+  duration:
+    hours: 24

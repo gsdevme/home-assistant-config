@@ -15,7 +15,7 @@
           for:
             minutes: 1
           below: "5"
-    - service: notify.gavin_pushover
+    - service: notify.pushover
       data:
         message: Hot Water is done
         title: Hot Water

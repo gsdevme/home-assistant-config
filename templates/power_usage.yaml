@@ -4,7 +4,7 @@
       state: >
         {% set battery_percentage = states('sensor.home_battery') | float(0) %}
 
-        {{ (10500/100) * (battery_percentage-20) }}
+        {{ (10500/100) * (battery_percentage-15) }}
     - name: "Estimate of Battery Life in Hours"
       unique_id: "estimate_of_battery_remaining_in_hours"
       unit_of_measurement: h

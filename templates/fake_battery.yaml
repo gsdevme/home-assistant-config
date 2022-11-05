@@ -1,9 +1,0 @@
-# ATM there is no way to know this vs solar due to hybrid inverter
-- sensor:
-    - name: "Battery Export Power"
-      unique_id: "battery_export_power"
-      device_class: energy
-      state_class: total_increasing
-      unit_of_measurement: "kWh"
-      state: >
-        {{ float(0) }}

@@ -10,7 +10,7 @@
       entity_id: sensor.home_battery
       above: 80
   action:
-    service: notify.gavin_pushover
+    service: notify.pushover
     data:
       message: "Power is being exported, turn something on"
       title: "Grid Export Happening"

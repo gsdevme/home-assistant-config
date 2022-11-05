@@ -14,3 +14,10 @@
     minutes: 10
   sampling_size: 500
   precision: 1
+- platform: integration
+  source: sensor.battery_power
+  name: "Battery Export Power"
+  unique_id: "battery_export_power"
+  unit_prefix: k
+  round: 2
+  method: left
