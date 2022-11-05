@@ -88,6 +88,10 @@ lovelace:
   resources:
     - url: /local/layout-card.js
       type: module
+    - url: /local/agile-consumption-card.js
+      type: module
+    - url: /local/agile-rates-card.js
+      type: module
     - url: /local/history-explorer-card.js
       type: module
 
