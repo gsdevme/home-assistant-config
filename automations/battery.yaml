@@ -1,0 +1,30 @@
+- alias: "[Battery] Percentage High"
+  id: "battery_above_90"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.home_battery
+      above: 90
+      for:
+        minutes: 10
+  condition:
+    condition: time
+    after: "09:00:00"
+  action:
+    service: notify.pushover
+    data:
+      message: "Battery at 90%"
+      title: "Battery at 90%"
+
+- alias: "[Battery] Percentage Low"
+  id: "battery_below_30"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.home_battery
+      below: 30
+      for:
+        minutes: 10
+  action:
+    service: notify.pushover
+    data:
+      message: "Battery below 30%"
+      title: "Battery below 30%"

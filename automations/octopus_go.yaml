@@ -1,0 +1,33 @@
+- alias: Octopus Go Start
+  id: "octopus_start"
+  trigger:
+    - platform: time
+      at: "00:30:00"
+  condition: []
+  action:
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.electric_tariff_rate
+      data:
+        value: 0.075
+    - service: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.is_cheap_rate
+  mode: single
+
+- alias: Octopus Go End
+  id: "octopus_end"
+  trigger:
+    - platform: time
+      at: "04:30:00"
+  condition: []
+  action:
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.electric_tariff_rate
+      data:
+        value: 0.401
+    - service: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.is_cheap_rate
+  mode: single

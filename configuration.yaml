@@ -13,6 +13,13 @@ input_boolean:
     name: Has been motion downstairs today
     icon: mdi:car
 
+homekit:
+  - filter:
+      include_entities:
+        - light.office_light
+        - light.master_bedroom_lamp
+        - sensor.average_temperature
+
 input_number:
   adaptive_light_brightness:
     name: Adaptive Light Brightness
@@ -20,6 +27,21 @@ input_number:
     max: 100
     initial: 100
     min: 1
+  temperature_at_end_of_daylight:
+    name: Temperature at the end of daylight
+    initial: 0
+    max: 30
+    min: 0
+  temperature_at_start_of_daylight:
+    name: Temperature at the start of daylight
+    initial: 0
+    max: 30
+    min: 0
+  overnight_heat_loss:
+    name: Heat lost overnight
+    initial: 0
+    max: 30
+    min: 0
 
 mqtt:
   binary_sensor:
@@ -36,12 +58,13 @@ mqtt:
       unique_id: "solis_inverter_battery"
       state_topic: "solis/metrics"
       unit_of_measurement: "%"
-      expire_after: 600
+      expire_after: 300
       value_template: "{{ value_json.battery_capacity_soc }}"
       device_class: "battery"
     - name: "Solis Solar Generation"
-      unique_id: "solis_solar_to_house"
       state_topic: "solis/metrics"
+      unique_id: "solis_solar_generation"
+      state_class: measurement
       unit_of_measurement: "W"
       expire_after: 120
       value_template: "{{ value_json.solar_to_house_power_modified }}"
@@ -63,11 +86,9 @@ mqtt:
     - unique_id: "solis_battery_voltage"
       name: "Solis Battery Voltage"
       state_topic: "solis/metrics"
-      expire_after: 120
+      expire_after: 300
       value_template: "{{ value_json.battery_voltage / 10 }}"
       device_class: "voltage"
-
-# battery_capacity_soc
 
 sensor: !include_dir_merge_list sensors/
 binary_sensor: !include_dir_merge_list binary-sensors/
@@ -87,10 +108,6 @@ lovelace:
   mode: yaml
   resources:
     - url: /local/layout-card.js
-      type: module
-    - url: /local/agile-consumption-card.js
-      type: module
-    - url: /local/agile-rates-card.js
       type: module
     - url: /local/history-explorer-card.js
       type: module
@@ -157,12 +174,16 @@ influxdb:
       - sensor.gavins_office_desk_humidity
       - sensor.downstairs_kitchen_sensor_temperature
       - sensor.downstairs_living_room_temperature
+      - sensor.living_room_upstairs_sensor_temperature
+      - sensor.spare_bedroom_sensor_temperature
+      - sensor.kitchen_sensor_temperature
       - sensor.gavins_office_desk_temperature
       - sensor.office_sensor_temperature
       - sensor.vicare_hot_water_gas_consumption_current_day
       - sensor.vicare_heating_gas_consumption_current_day
       - weather.home
       - sensor.forecast_temperature
+      - sensor.battery_power
 
 light:
   - platform: group
@@ -171,6 +192,7 @@ light:
       - light.hall_wall_office_light
       - light.hall_wall_livingroom_light
       - light.landing_light
+      - light.hall_wall_door_light
   - platform: group
     name: all_living_room_lights
     entities:

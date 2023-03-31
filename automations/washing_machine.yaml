@@ -19,8 +19,8 @@
       data:
         message: Washing Machine is done
         title: Washing Machine
-    # - service: tts.google_translate_say
-    #   data:
-    #     entity_id: media_player.kitchen
-    #     message: The Washing Machine has finished
-    #     cache: true
+    - service: tts.google_translate_say
+      data:
+        entity_id: media_player.hall
+        message: The Washing Machine has finished
+        cache: true

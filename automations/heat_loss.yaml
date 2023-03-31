@@ -1,0 +1,31 @@
+- alias: "[HeatLoss] Set the temperature at the start of the day"
+  id: "heat_loss_start"
+  trigger:
+    - platform: sun
+      event: sunrise
+      offset: "+00:15:00"
+  action:
+    - service: input_number.set_value
+      entity_id: input_number.temperature_at_start_of_daylight
+      data:
+        value: "{{ states('sensor.average_temperature') | float(0) }}"
+    - service: input_number.set_value
+      entity_id: input_number.overnight_heat_loss
+      data:
+        value: "{{ states('input_number.temperature_at_end_of_daylight') | float(0) -  states('input_number.temperature_at_start_of_daylight') | float(0)}}"
+
+- alias: "[HeatLoss] Set the temperature at the end of the day"
+  id: "heat_loss_end"
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-00:45:00"
+  action:
+    - service: input_number.set_value
+      entity_id: input_number.temperature_at_end_of_daylight
+      data:
+        value: "{{ states('sensor.average_temperature') | float(0) }}"
+    - service: input_number.set_value
+      entity_id: input_number.temperature_at_start_of_daylight
+      data:
+        value: 0

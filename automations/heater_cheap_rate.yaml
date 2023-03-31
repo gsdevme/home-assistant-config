@@ -1,0 +1,25 @@
+- alias: heater_start
+  id: "heater_start"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.is_cheap_rate
+      to: "on"
+  condition: []
+  action:
+    - service: switch.turn_on
+      target:
+        entity_id: switch.downstairs_kitchen_socket
+  mode: single
+
+- alias: heater_end
+  id: "heater_end"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.is_cheap_rate
+      to: "off"
+  condition: []
+  action:
+    - service: switch.turn_off
+      target:
+        entity_id: switch.downstairs_kitchen_socket
+  mode: single

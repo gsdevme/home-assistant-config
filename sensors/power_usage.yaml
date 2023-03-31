@@ -21,3 +21,9 @@
   unit_prefix: k
   round: 2
   method: left
+- platform: integration
+  source: sensor.solis_solar_generation
+  name: "PV Generation kWh"
+  unit_prefix: k
+  round: 2
+  method: left

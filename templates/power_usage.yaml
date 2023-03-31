@@ -10,6 +10,6 @@
       unit_of_measurement: h
       state: >
         {% set battery = states('sensor.estimate_of_battery_life') | float(1) %}
-        {% set usage = states('sensor.power_usage') | float(1) %}
+        {% set usage = states('sensor.battery_power') | float(1) %}
 
         {{ ((battery / usage) | round(1, 'ceil')) }}

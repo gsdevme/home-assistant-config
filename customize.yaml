@@ -4,3 +4,5 @@ sensor.solar_battery_energy_returned:
   friendly_name: "PV/Battery Generation"
 sensor.grid_energy:
   friendly_name: "Grid Usage"
+sensor.tasmota_plug_2_energy_today:
+  friendly_name: "Dishwasher Energy (kWh)"

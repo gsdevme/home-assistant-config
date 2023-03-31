@@ -8,3 +8,4 @@ tts/*
 secrets.yaml
 esphome/*
 custom_*/*
+octopusagile.json

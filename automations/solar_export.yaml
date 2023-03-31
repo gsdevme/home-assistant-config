@@ -5,8 +5,9 @@
       entity_id: sensor.grid_export_power
       above: 500
       for:
-        minutes: 20
-    - platform: numeric_state
+        minutes: 10
+  condition:
+    - condition: numeric_state
       entity_id: sensor.home_battery
       above: 80
   action:

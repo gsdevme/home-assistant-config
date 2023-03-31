@@ -8,6 +8,24 @@
     - service: switch.turn_on
       entity_id:
         - switch.tv_stand
+
+- alias: "[Power Save] Turn on devices for start of the weekday"
+  id: "turn_on_devices_for_start_of_the_weekday"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.has_motion_downstairs_today
+      to: "on"
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    - service: switch.turn_on
+      entity_id:
         - switch.my_office_setup_plug
 
 - alias: "[Power Save] Turn off devices for end of the day"
