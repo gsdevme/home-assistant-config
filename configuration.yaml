@@ -44,51 +44,51 @@ input_number:
     min: 0
 
 mqtt:
-  binary_sensor:
-    - unique_id: "solis_inverter_battery_charging_status"
-      name: "Home Battery Charging Status"
-      state_topic: "solis/metrics"
-      value_template: "{{ value_json.battery_current_direction }}"
-      expire_after: 120
-      payload_on: "0"
-      payload_off: "1"
-      device_class: "battery_charging"
-  sensor:
-    - name: "Home Battery"
-      unique_id: "solis_inverter_battery"
-      state_topic: "solis/metrics"
-      unit_of_measurement: "%"
-      expire_after: 300
-      value_template: "{{ value_json.battery_capacity_soc }}"
-      device_class: "battery"
-    - name: "Solis Solar Generation"
-      state_topic: "solis/metrics"
-      unique_id: "solis_solar_generation"
-      state_class: measurement
-      unit_of_measurement: "W"
-      expire_after: 120
-      value_template: "{{ value_json.solar_to_house_power_modified }}"
-      device_class: "power"
-    - unique_id: "solis_battery_to_house"
-      name: "Solis Battery Power"
-      state_topic: "solis/metrics"
-      unit_of_measurement: "W"
-      expire_after: 120
-      value_template: "{{ value_json.battery_power_out_modified }}"
-      device_class: "power"
-    - unique_id: "solis_inverter_to_battery"
-      name: "Solis Battery Charging"
-      state_topic: "solis/metrics"
-      unit_of_measurement: "W"
-      expire_after: 120
-      value_template: "{{ value_json.battery_power_in_modified }}"
-      device_class: "power"
-    - unique_id: "solis_battery_voltage"
-      name: "Solis Battery Voltage"
-      state_topic: "solis/metrics"
-      expire_after: 300
-      value_template: "{{ value_json.battery_voltage / 10 }}"
-      device_class: "voltage"
+#  binary_sensor:
+#    - unique_id: "solis_inverter_battery_charging_status"
+#      name: "Home Battery Charging Status"
+#      state_topic: "solis/metrics"
+#      value_template: "{{ value_json.battery_current_direction }}"
+#      expire_after: 120
+#      payload_on: "0"
+#      payload_off: "1"
+#      device_class: "battery_charging"
+#  sensor:
+#    - name: "Home Battery"
+#      unique_id: "solis_inverter_battery"
+#      state_topic: "solis/metrics"
+#      unit_of_measurement: "%"
+#      expire_after: 300
+#      value_template: "{{ value_json.battery_capacity_soc }}"
+#      device_class: "battery"
+#    - name: "Solis Solar Generation"
+#      state_topic: "solis/metrics"
+#      unique_id: "solis_solar_generation"
+#      state_class: measurement
+#      unit_of_measurement: "W"
+#      expire_after: 120
+#      value_template: "{{ value_json.solar_to_house_power_modified }}"
+#      device_class: "power"
+#    - unique_id: "solis_battery_to_house"
+#      name: "Solis Battery Power"
+#      state_topic: "solis/metrics"
+#      unit_of_measurement: "W"
+#      expire_after: 120
+#      value_template: "{{ value_json.battery_power_out_modified }}"
+#      device_class: "power"
+#    - unique_id: "solis_inverter_to_battery"
+#      name: "Solis Battery Charging"
+#      state_topic: "solis/metrics"
+#      unit_of_measurement: "W"
+#      expire_after: 120
+#      value_template: "{{ value_json.battery_power_in_modified }}"
+#      device_class: "power"
+#    - unique_id: "solis_battery_voltage"
+#      name: "Solis Battery Voltage"
+#      state_topic: "solis/metrics"
+#      expire_after: 300
+#      value_template: "{{ value_json.battery_voltage / 10 }}"
+#      device_class: "voltage"
 
 sensor: !include_dir_merge_list sensors/
 binary_sensor: !include_dir_merge_list binary-sensors/
@@ -164,9 +164,7 @@ influxdb:
     entities:
       - sensor.solis_inverter_battery
       - sensor.solis_solar_to_house
-      - sensor.solis_battery_to_house
       - sensor.solar_generating_power
-      - sensor.solis_battery_voltage
       - sensor.grid_energy_power
       - sensor.power_usage
       - sensor.downstairs_kitchen_sensor_humidity

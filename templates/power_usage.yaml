@@ -2,7 +2,7 @@
     - name: "Estimate of Battery Life"
       unique_id: "estimate_of_battery_remaining"
       state: >
-        {% set battery_percentage = states('sensor.home_battery') | float(0) %}
+        {% set battery_percentage = states('sensor.solis_inverter_battery') | float(0) %}
 
         {{ (10500/100) * (battery_percentage-15) }}
     - name: "Estimate of Battery Life in Hours"
@@ -10,6 +10,6 @@
       unit_of_measurement: h
       state: >
         {% set battery = states('sensor.estimate_of_battery_life') | float(1) %}
-        {% set usage = states('sensor.battery_power') | float(1) %}
+        {% set usage = states('sensor.solis_inverter_battery') | float(1) %}
 
         {{ ((battery / usage) | round(1, 'ceil')) }}
