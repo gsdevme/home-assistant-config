@@ -1,0 +1,41 @@
+- id: '1717509829456'
+  alias: '[Overnight] Limit charge'
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.solis_inverter_battery
+    value_template: '{{ state.state|float(0) - 1 }}'
+    above: input_number.max_overnight_charge_percentage
+    for:
+      minutes: 5
+  condition:
+  - alias: is cheap rate
+    condition: state
+    entity_id: input_boolean.is_cheap_rate
+    state: 'on'
+  action:
+  - service: input_number.set_value
+    entity_id: input_number.charge_amps
+    data:
+      value: 0.1
+  mode: restart
+- id: '1723647386392'
+  alias: Garage Door Toggle
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.garage_door_opener_action
+    to: off-press
+    attribute: action
+  - platform: state
+    entity_id:
+    - sensor.garage_door_opener_action
+    to: on-press
+  condition: []
+  action:
+  - service: switch.toggle
+    target:
+      entity_id: switch.garage_door
+    data: {}
+  mode: single

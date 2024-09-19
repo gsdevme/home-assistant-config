@@ -1,0 +1,27 @@
+- alias: "[blind] close office blind 10mins before sunset"
+  id: "office_blind_close"
+  description: ""
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-00:10:00"
+  condition: []
+  action:
+    - service: cover.close_cover
+      target:
+        entity_id: cover.office_blind
+  mode: single
+
+- alias: "[blind] open office blind after sunrise"
+  id: "office_blind_open"
+  description: ""
+  trigger:
+    - platform: sun
+      event: sunrise
+      offset: "+01:00:00"
+  condition: []
+  action:
+    - service: cover.open_cover
+      target:
+        entity_id: cover.office_blind
+  mode: single

@@ -1,30 +1,31 @@
-- alias: "[Battery] Percentage High"
-  id: "battery_above_90"
+- id: "battery_above_90"
+  alias: "[Battery] Percentage High"
   trigger:
     - platform: numeric_state
-      entity_id: sensor.home_battery
+      entity_id: sensor.solis_inverter_battery
       above: 90
       for:
         minutes: 10
   condition:
-    condition: time
-    after: "09:00:00"
+    - condition: time
+      after: "09:00:00"
+    - condition: template
+      value_template: "{{ now().date() > this.attributes.last_triggered.date() }}"
   action:
     service: notify.pushover
     data:
       message: "Battery at 90%"
       title: "Battery at 90%"
-
-- alias: "[Battery] Percentage Low"
-  id: "battery_below_30"
-  trigger:
-    - platform: numeric_state
-      entity_id: sensor.home_battery
-      below: 30
-      for:
-        minutes: 10
-  action:
-    service: notify.pushover
-    data:
-      message: "Battery below 30%"
-      title: "Battery below 30%"
+# - alias: "[Battery] Percentage Low"
+#   id: "battery_below_30"
+#   trigger:
+#     - platform: numeric_state
+#       entity_id: sensor.home_battery
+#       below: 30
+#       for:
+#         minutes: 10
+#   action:
+#     service: notify.pushover
+#     data:
+#       message: "Battery below 30%"
+#       title: "Battery below 30%"

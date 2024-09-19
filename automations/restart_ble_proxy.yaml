@@ -1,0 +1,9 @@
+- alias: "[Garage] Restart BLE proxy every 45mins"
+  id: "restart_ble_proxy_every_45"
+  trigger:
+    - platform: time_pattern
+      minutes: "/45"
+  action:
+    service: switch.turn_on
+    target:
+      entity_id: switch.esp32_ble_proxy_ble_proxy_restart

@@ -1,0 +1,14 @@
+esla_location:
+  hide_if_away: false
+  icon: mdi:car
+  mac:
+  name: Tesla
+  picture:
+  track: true
+
+tesla_location:
+  name: tesla_location
+  mac:
+  icon:
+  picture:
+  track: true

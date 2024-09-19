@@ -1,0 +1,88 @@
+- alias: Octopus Cheap
+  id: "octopus_start"
+  trigger:
+    - platform: time
+      at: "23:30:00"
+    - platform: state
+      entity_id: binary_sensor.octopus_energy_a_2f48c80c_intelligent_dispatching
+      to: "on"
+  condition: []
+  action:
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.electric_tariff_rate
+      data:
+        value: 0.075
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.electric_export_tariff_rate
+      data:
+        value: 0.15
+    - service: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.is_cheap_rate
+    - service: select.select_option
+      target:
+        entity_id: select.energy_grid_meter
+      data:
+        option: "offpeak"
+  mode: single
+
+# - alias: Octopus Middle
+#   id: "octopus_middle"
+#   trigger:
+#     - platform: time
+#       at: "05:00:00"
+#     - platform: time
+#       at: "19:00:00"
+#   condition: []
+#   action:
+#     - service: input_number.set_value
+#       target:
+#         entity_id: input_number.electric_tariff_rate
+#       data:
+#         value: 0.2397
+#     - service: input_number.set_value
+#       target:
+#         entity_id: input_number.electric_export_tariff_rate
+#       data:
+#         value: 0.1461
+#     - service: input_boolean.turn_off
+#       target:
+#         entity_id: input_boolean.is_cheap_rate
+#     - service: select.select_option
+#       target:
+#         entity_id: select.energy_grid_meter
+#       data:
+#         option: "standard"
+#   mode: single
+
+- alias: Octopus Expensive
+  id: "octopus_expensive"
+  trigger:
+    - platform: time
+      at: "05:30:00"
+    - platform: state
+      entity_id: binary_sensor.octopus_energy_a_2f48c80c_intelligent_dispatching
+      to: "off"
+  condition: []
+  action:
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.electric_tariff_rate
+      data:
+        value: 0.26
+    - service: input_number.set_value
+      target:
+        entity_id: input_number.electric_export_tariff_rate
+      data:
+        value: 0.15
+    - service: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.is_cheap_rate
+    - service: select.select_option
+      target:
+        entity_id: select.energy_grid_meter
+      data:
+        option: "peak"
+  mode: single

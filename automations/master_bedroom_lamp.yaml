@@ -1,0 +1,23 @@
+- alias: "[Master Bedroom Lamp] Turn on light when pressed on"
+  id: "turn_on_master_bedroom_lamp_when_pressed"
+  trigger:
+    platform: state
+    entity_id: sensor.master_bedroom_lamp_switch_1_action
+    to: "on-press"
+  action:
+    service: light.turn_on
+    target:
+      entity_id: light.master_bedroom_lamp
+    data:
+      brightness: 35
+
+- alias: "[Master Bedroom Lamp] Turn off light when pressed off"
+  id: "turn_off_master_bedroom_lamp_when_pressed"
+  trigger:
+    platform: state
+    entity_id: sensor.master_bedroom_lamp_switch_1_action
+    to: "off-press"
+  action:
+    service: light.turn_off
+    target:
+      entity_id: light.master_bedroom_lamp

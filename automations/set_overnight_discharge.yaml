@@ -1,0 +1,11 @@
+- alias: "[Overnight] set overnight discharge"
+  id: "set_overnight_discharge"
+  trigger:
+    - platform: state
+      entity_id: input_number.discharge_amps
+  action:
+    - service: mqtt.publish
+      data:
+        qos: 0
+        topic: solar_inverter_manager/set_discharge
+        payload_template: "{{ states('input_number.discharge_amps') }}"

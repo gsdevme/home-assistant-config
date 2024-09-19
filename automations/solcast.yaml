@@ -1,0 +1,18 @@
+- alias: Solcast update
+  id: "solcast_update"
+  trigger:
+    - platform: time
+      at: "23:00:00"
+    - platform: time
+      at: "07:00:00"
+    - platform: time
+      at: "13:00:00"
+    - platform: time
+      at: "17:00:00"
+  condition: []
+  action:
+    - delay:
+        seconds: "{{ range(30, 360)|random|int }}"
+    - service: solcast_solar.update_forecasts
+      data: {}
+  mode: single

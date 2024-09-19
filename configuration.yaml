@@ -20,6 +20,22 @@ homekit:
         - light.master_bedroom_lamp
         - sensor.average_temperature
 
+openhasp:
+  m5stack:
+    objects:
+      - obj: "p1b5" # Battery
+        properties:
+          "val": '{{ states("sensor.solis_inverter_battery") }}'
+          "value_str": '{{ states("sensor.solis_inverter_battery") }}%'
+      - obj: "p1b6" # PV
+        properties:
+          "val": '{{ states("sensor.solis_inverter_pv") }}'
+          "value_str": '{{ states("sensor.solis_inverter_pv") }}W'
+      - obj: "p1b7" # Usage
+        properties:
+          "val": '{{ states("sensor.power_usage") }}'
+          "value_str": '{{ states("sensor.power_usage") }}W'
+
 input_number:
   adaptive_light_brightness:
     name: Adaptive Light Brightness
@@ -43,7 +59,8 @@ input_number:
     max: 30
     min: 0
 
-mqtt:
+mqtt: !include_dir_merge_list mqtt-sensors/
+
 #  binary_sensor:
 #    - unique_id: "solis_inverter_battery_charging_status"
 #      name: "Home Battery Charging Status"
@@ -94,6 +111,15 @@ sensor: !include_dir_merge_list sensors/
 binary_sensor: !include_dir_merge_list binary-sensors/
 switch: !include_dir_merge_list switches/
 
+# Removed as of 2024.8
+# proximity:
+#   home_tesla:
+#     zone: home
+#     devices:
+#       - device_tracker.tesla_location
+#     tolerance: 10
+#     unit_of_measurement: km
+
 http:
   use_x_forwarded_for: true
   trusted_proxies:
@@ -104,12 +130,26 @@ http:
     - 127.0.0.1
     - ::1
 
+rest:
+  resource: !secret ripple_energy_url
+  scan_interval: 7200
+  sensor:
+    - name: "Ripple Energy - All Data"
+      unique_id: "ripple_energy_alldata"
+      value_template: "OK"
+      json_attributes:
+        - generation_assets
+
 lovelace:
   mode: yaml
   resources:
     - url: /local/layout-card.js
       type: module
     - url: /local/history-explorer-card.js
+      type: module
+    - url: /local/wallpanel.js
+      type: module
+    - url: /local/kiosk-mode.js?v=1.2.1
       type: module
 
 alexa:
@@ -121,11 +161,13 @@ alexa:
         - light.master_bedroom_lamp
         - light.office_light
         - light.all_lights
+        - cover.office_blind
         - switch.my_office_setup_plug
         - switch.dehumidifier
         - switch.mqtt_guest_mode_switch
         - light.the_living_room_lights
         - vacuum.jeff
+        - switch.tasmota_plug_2
     entity_config:
       switch.mqtt_guest_mode_switch:
         name: "Guest Mode"
@@ -141,6 +183,10 @@ alexa:
         name: "Master Bedroom Lamp"
       switch.dehumidifier:
         name: "Dehumidifier"
+      cover.office_blind:
+        name: "Office Blind"
+      switch.tasmota_plug_2:
+        name: "Christmas Tree"
 
 logbook:
   exclude:
@@ -152,7 +198,9 @@ logbook:
       - "*motion_sensitivity"
       - "*update_available"
 
-automation: !include_dir_merge_list automations/
+automation manual: !include_dir_merge_list automations/
+automation ui: !include automations.yaml
+
 script: !include scripts.yaml
 scene: !include scenes.yaml
 template: !include_dir_merge_list templates/
@@ -167,11 +215,13 @@ influxdb:
       - sensor.solar_generating_power
       - sensor.grid_energy_power
       - sensor.power_usage
-      - sensor.downstairs_kitchen_sensor_humidity
-      - sensor.downstairs_living_room_humidity
-      - sensor.gavins_office_desk_humidity
+      - sensor.living_room_sensor_humidity
+      - sensor.office_sensor_humidity
+      - sensor.kitchen_sensor_humidity
+      - sensor.living_room_sensor_temperature
       - sensor.downstairs_kitchen_sensor_temperature
       - sensor.downstairs_living_room_temperature
+      - sensor.master_bedroom_sensor_temperature
       - sensor.living_room_upstairs_sensor_temperature
       - sensor.spare_bedroom_sensor_temperature
       - sensor.kitchen_sensor_temperature
@@ -182,6 +232,8 @@ influxdb:
       - weather.home
       - sensor.forecast_temperature
       - sensor.battery_power
+      - climate.vicare_heating
+      - sensor.vicare_boiler_supply_temperature
 
 light:
   - platform: group
@@ -191,6 +243,9 @@ light:
       - light.hall_wall_livingroom_light
       - light.landing_light
       - light.hall_wall_door_light
+      - light.landing_light_1
+      - light.landing_light_2
+      - light.landing_light_3
   - platform: group
     name: all_living_room_lights
     entities:

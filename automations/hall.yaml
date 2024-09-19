@@ -7,3 +7,43 @@
       motion_entity: binary_sensor.hall_or_landing_motion
       light_target:
         entity_id: light.hall_lights
+
+- id: "disable_hall_lights_at_10"
+  alias: "[Hall] Stop automation at ten"
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+        - sat
+        - sun
+  action:
+    - service: automation.turn_off
+      entity_id: automation.hall_landing_lights
+    - service: light.turn_off
+      entity_id: light.hall_lights
+
+- id: "enable_hall_lights_at_7"
+  alias: "[Hall] start automation at seven"
+  trigger:
+    - platform: time
+      at: "07:00:00"
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+        - sat
+        - sun
+  action:
+    - service: automation.turn_on
+      entity_id: automation.hall_landing_lights

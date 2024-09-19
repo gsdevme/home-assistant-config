@@ -15,3 +15,31 @@
     data:
       message: "Power is being exported, turn something on"
       title: "Grid Export Happening"
+
+- alias: "[Solar] Export Happening"
+  id: "solar_export_happening_toggle"
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.grid_export_power
+      above: 150
+      for:
+        minutes: 3
+  action:
+    - service: input_boolean.turn_on
+      target:
+        entity_id: input_boolean.is_exporting
+  mode: "restart"
+
+- alias: "[Solar] Export Happening Reset"
+  id: "solar_export_happening_reset"
+  trigger:
+    - platform: state
+      entity_id:
+        - input_boolean.is_exporting
+      to: "on"
+  action:
+    - delay: 301
+    - service: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.is_exporting
+  mode: "restart"

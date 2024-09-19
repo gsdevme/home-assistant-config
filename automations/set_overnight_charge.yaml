@@ -1,0 +1,11 @@
+- alias: "[Overnight] set overnight charge"
+  id: "set_overnight_charge"
+  trigger:
+    - platform: state
+      entity_id: input_number.charge_amps
+  action:
+    - service: mqtt.publish
+      data:
+        qos: 0
+        topic: solar_inverter_manager/set_charge
+        payload_template: "{{ states('input_number.charge_amps') }}"
