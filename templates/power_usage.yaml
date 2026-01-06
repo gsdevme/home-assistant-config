@@ -13,3 +13,23 @@
         {% set usage = states('sensor.solis_inverter_power_from_battery') | float(1) %}
 
         {{ ((battery / usage) | round(1, 'ceil')) }}
+    - name: "Estimate of Grid Charge"
+      unique_id: "estimate_of_grid-charge"
+      unit_of_measurement: wh
+      state: >
+        {{ (((states('input_number.charge_amps') | float(0)) * 54) * 3) }}
+    - name: "Estimate of Grid Discharge"
+      unique_id: "estimate_of_grid_discharge"
+      unit_of_measurement: wh
+      state: >
+        {{ (((states('input_number.discharge_amps') | float(0)) * 54) * 1.5) }}
+
+    - name: "Battery Efficiency"
+      unique_id: "battery_efficiency"
+      unit_of_measurement: "%"
+      state: >
+        {% if states('sensor.solis_inverter_pv')| float(0) < 10 %}
+          {{ (states('sensor.power_usage') | float(0) / states('sensor.solar_battery_power') | float(0)) * 100 }}
+        {% else %}
+          0
+        {% endif %}

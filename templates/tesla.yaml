@@ -1,0 +1,24 @@
+- sensor:
+    - unique_id: tesla_est_battery_range_mi
+      name: Tesla Estimated Range (mi)
+      unit_of_measurement: mi
+      state: >
+        {{ (states('sensor.tesla_est_battery_range_km') | float / 1.609344) | round(2) }}
+
+    - unique_id: tesla_rated_battery_range_mi
+      name: Tesla Rated Range (mi)
+      unit_of_measurement: mi
+      state: >
+        {{ (states('sensor.tesla_rated_battery_range_km') | float / 1.609344) | round(2) }}
+
+    - unique_id: tesla_ideal_battery_range_mi
+      name: Tesla Ideal Range (mi)
+      unit_of_measurement: mi
+      state: >
+        {{ (states('sensor.tesla_ideal_battery_range_km') | float / 1.609344) | round(2) }}
+
+    - unique_id: tesla_odometer_mi
+      name: Tesla Odometer (mi)
+      unit_of_measurement: mi
+      state: >
+        {{ (states('sensor.tesla_odometer') | float / 1.609344) | round(2) }}

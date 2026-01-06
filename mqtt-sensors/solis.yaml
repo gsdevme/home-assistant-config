@@ -1,0 +1,12 @@
+- switch:
+    - unique_id: solis_inverter_optimal_income
+      name: "Grid Charge Switch"
+      state_topic: "hmd/binary_sensor/Solis-Inverter/Solis-Inverter-optimal_income/state"
+      command_topic: "solar_inverter_manager/set_optimal_income"
+      payload_on: "1"
+      payload_off: "0"
+      state_on: "on"
+      state_off: "off"
+      optimistic: false
+      qos: 0
+      retain: false
