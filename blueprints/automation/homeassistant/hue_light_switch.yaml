@@ -25,9 +25,9 @@ trigger:
 action:
   - alias: "Toggle light"
     service: >
-      {% if trigger.to_state.state == "on_press" %}
+      {% if trigger.to_state.state == "on_press_release" %}
         light.turn_on
-      {% elseif trigger.to_state.state == "off_press"  %}
+      {% elseif trigger.to_state.state == "off_press_release"  %}
         light.turn_off
       {% else %}
       {% endif %}

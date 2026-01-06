@@ -12,14 +12,18 @@
         entity_id: cover.office_blind
   mode: single
 
-- alias: "[blind] open office blind after sunrise"
+- alias: "[blind] open office blind after sunrise or 9am"
   id: "office_blind_open"
-  description: ""
   trigger:
     - platform: sun
       event: sunrise
-      offset: "+01:00:00"
-  condition: []
+      offset: "+00:30:00"
+    - platform: time
+      at: "09:00:00"
+  condition:
+    - condition: state
+      entity_id: cover.office_blind
+      state: "closed"
   action:
     - service: cover.open_cover
       target:

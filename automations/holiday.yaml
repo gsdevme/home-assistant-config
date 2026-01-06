@@ -1,0 +1,18 @@
+- alias: "Holiday"
+  id: "holiday_on"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.has_motion_downstairs_today
+      to: "on"
+  condition:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.my_office_setup_plug

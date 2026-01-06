@@ -6,5 +6,6 @@
     #- binary_sensor.landing_sensor_bookcase_occupancy
     #- binary_sensor.landing_sensor_occupancy
     #- binary_sensor.hall_sensor_occupancy
-    - binary_sensor.sonoff_landing_bookshelf_occupancy
+    #- binary_sensor.sonoff_landing_bookshelf_occupancy
     - binary_sensor.sonoff_hall_sensor_occupancy
+    - binary_sensor.aqara_hall_sensor_occupancy

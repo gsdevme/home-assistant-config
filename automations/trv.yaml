@@ -2,7 +2,7 @@
   id: "office_trv_heat"
   trigger:
     - platform: time
-      at: "07:00:00"
+      at: "06:30:00"
   condition:
     - condition: time
       weekday:
@@ -17,13 +17,13 @@
         entity_id:
           - climate.trv_office
       data:
-        temperature: 21.0
+        temperature: 20.5
     - service: climate.set_temperature
       target:
         entity_id:
           - climate.trv_ceilidh_office
       data:
-        temperature: 12.5
+        temperature: 20.5
   mode: single
 
 - alias: "[Office] Set Office TRV Setback"
@@ -39,5 +39,5 @@
           - climate.trv_office
           - climate.trv_ceilidh_office
       data:
-        temperature: 10.0
+        temperature: 16.0
   mode: single

@@ -8,10 +8,30 @@ homeassistant:
 tts:
   - platform: google_translate
 
+logger:
+  logs:
+    homeassistant.components.command_line: debug
+
 input_boolean:
   has_motion_downstairs_today:
     name: Has been motion downstairs today
     icon: mdi:car
+
+cover:
+  - platform: template
+    covers:
+      west_garage_door:
+        device_class: garage
+        friendly_name: "West Garage Door"
+        value_template: "{{ is_state('binary_sensor.west_garage_door_contact_sensor_contact', 'on') }}"
+        open_cover:
+          - action: switch.toggle
+            target:
+              entity_id: switch.garage_door
+        close_cover:
+          - action: switch.toggle
+            target:
+              entity_id: switch.garage_door
 
 homekit:
   - filter:
@@ -19,6 +39,14 @@ homekit:
         - light.office_light
         - light.master_bedroom_lamp
         - sensor.average_temperature
+
+command_line:
+  - sensor:
+      name: Energy Usage During Peak
+      unique_id: "energy_usage_during_peak"
+      command: python3 /config/python_scripts/get_energy_usage.py
+      unit_of_measurement: "kWh"
+      command_timeout: 180
 
 openhasp:
   m5stack:

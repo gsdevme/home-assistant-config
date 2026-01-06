@@ -10,3 +10,6 @@ esphome/*
 custom_*/*
 octopusagile.json
 solcast.json
+solcast-sites.json
+solcast-usage.json
+.ha_run.lock

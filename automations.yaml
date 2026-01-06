@@ -22,20 +22,20 @@
 - id: '1723647386392'
   alias: Garage Door Toggle
   description: ''
-  trigger:
-  - platform: state
-    entity_id:
+  triggers:
+  - entity_id:
     - sensor.garage_door_opener_action
-    to: off-press
+    to: off_press_release
     attribute: action
-  - platform: state
-    entity_id:
+    trigger: state
+  - entity_id:
     - sensor.garage_door_opener_action
-    to: on-press
-  condition: []
-  action:
-  - service: switch.toggle
-    target:
+    to: on_press_release
+    trigger: state
+  conditions: []
+  actions:
+  - target:
       entity_id: switch.garage_door
     data: {}
+    action: switch.toggle
   mode: single

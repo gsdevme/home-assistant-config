@@ -1,0 +1,26 @@
+toggle_after_time:
+  alias: Toggle after time
+  fields:
+    entity:
+      description: Entity ID
+    timeout:
+      description: The amount of time to wait before turning off
+      default: 00:30:00
+    turn_on:
+      description: The service to call to turn something on
+    turn_off:
+      description: The service to call to turn something off
+  sequence:
+  - alias: Turn the entity on
+    target:
+      entity_id: '{{ entity }}'
+    action: '{{ turn_on }}'
+  - alias: Wait the specified time
+    delay: '{{ timeout }}'
+  - alias: Turn the entity off
+    target:
+      entity_id: '{{ entity }}'
+    action: '{{ turn_off }}'
+  mode: parallel
+  description: ''
+  icon: mdi:timer

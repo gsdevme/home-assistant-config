@@ -1,0 +1,20 @@
+- id: "west_garage_door_left_open"
+  alias: "[Garage] West garage door left open"
+  description: ""
+  trigger:
+    - platform: state
+      entity_id: cover.west_garage_door
+      to: "open"
+      for:
+        minutes: 5
+  condition: []
+  action:
+    - service: notify.pushover
+      data:
+        message: The Garage Door is open
+        title: Garage Door
+    - service: tts.google_translate_say
+      data:
+        entity_id: media_player.hall
+        message: The Garage door has been left open
+        cache: true

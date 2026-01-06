@@ -382,7 +382,7 @@
 
 - binary_sensor:
     name: Healthy
-    object_id: tesla_healthy
+    default_entity_id: binary_sensor.tesla_healthy
     unique_id: teslamate_1_healthy
     availability: *teslamate_availability
     device: *teslamate_device_info
