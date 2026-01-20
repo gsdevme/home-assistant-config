@@ -1,7 +1,7 @@
 - sensor:
     name: Display Name
-    object_id: tesla_display_name # entity_id
-    unique_id: teslamate_1_display_name # internal id, used for device grouping
+    default_entity_id: sensor.tesla_display_name
+    unique_id: teslamate_1_display_name
     availability: &teslamate_availability
       - topic: teslamate/cars/1/healthy
         payload_available: "true"
@@ -17,7 +17,7 @@
 
 - sensor:
     name: State
-    object_id: tesla_state
+    default_entity_id: sensor.tesla_state
     unique_id: teslamate_1_state
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -26,7 +26,7 @@
 
 - sensor:
     name: Since
-    object_id: tesla_since
+    default_entity_id: sensor.tesla_since
     unique_id: teslamate_1_since
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -36,7 +36,7 @@
 
 - sensor:
     name: Version
-    object_id: tesla_version
+    default_entity_id: sensor.tesla_version
     unique_id: teslamate_1_version
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -45,7 +45,7 @@
 
 - sensor:
     name: Update Version
-    object_id: tesla_update_version
+    default_entity_id: sensor.tesla_update_version
     unique_id: teslamate_1_update_version
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -54,7 +54,7 @@
 
 - sensor:
     name: Model
-    object_id: tesla_model
+    default_entity_id: sensor.tesla_model
     unique_id: teslamate_1_model
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -62,7 +62,7 @@
 
 - sensor:
     name: Trim Badging
-    object_id: tesla_trim_badging
+    default_entity_id: sensor.tesla_trim_badging
     unique_id: teslamate_1_trim_badging
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -71,7 +71,7 @@
 
 - sensor:
     name: Exterior Color
-    object_id: tesla_exterior_color
+    default_entity_id: sensor.tesla_exterior_color
     unique_id: teslamate_1_exterior_color
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -80,7 +80,7 @@
 
 - sensor:
     name: Wheel Type
-    object_id: tesla_wheel_type
+    default_entity_id: sensor.tesla_wheel_type
     unique_id: teslamate_1_wheel_type
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -88,7 +88,7 @@
 
 - sensor:
     name: Spoiler Type
-    object_id: tesla_spoiler_type
+    default_entity_id: sensor.tesla_spoiler_type
     unique_id: teslamate_1_spoiler_type
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -97,7 +97,7 @@
 
 - sensor:
     name: Geofence
-    object_id: tesla_geofence
+    default_entity_id: sensor.tesla_geofence
     unique_id: teslamate_1_geofence
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -106,7 +106,7 @@
 
 - sensor:
     name: Latitude
-    object_id: tesla_latitude
+    default_entity_id: sensor.tesla_latitude
     unique_id: teslamate_1_latitude
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -116,7 +116,7 @@
 
 - sensor:
     name: Longitude
-    object_id: tesla_longitude
+    default_entity_id: sensor.tesla_longitude
     unique_id: teslamate_1_longitude
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -126,7 +126,7 @@
 
 - sensor:
     name: Shift State
-    object_id: tesla_shift_state
+    default_entity_id: sensor.tesla_shift_state
     unique_id: teslamate_1_shift_state
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -135,7 +135,7 @@
 
 - sensor:
     name: Power
-    object_id: tesla_power
+    default_entity_id: sensor.tesla_power
     unique_id: teslamate_1_power
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -146,7 +146,7 @@
 
 - sensor:
     name: Speed
-    object_id: tesla_speed
+    default_entity_id: sensor.tesla_speed
     unique_id: teslamate_1_speed
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -156,7 +156,7 @@
 
 - sensor:
     name: Heading
-    object_id: tesla_heading
+    default_entity_id: sensor.tesla_heading
     unique_id: teslamate_1_heading
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -166,7 +166,7 @@
 
 - sensor:
     name: Elevation
-    object_id: tesla_elevation
+    default_entity_id: sensor.tesla_elevation
     unique_id: teslamate_1_elevation
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -176,7 +176,7 @@
 
 - sensor:
     name: Inside Temp
-    object_id: tesla_inside_temp
+    default_entity_id: sensor.tesla_inside_temp
     unique_id: teslamate_1_inside_temp
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -187,7 +187,7 @@
 
 - sensor:
     name: Outside Temp
-    object_id: tesla_outside_temp
+    default_entity_id: sensor.tesla_outside_temp
     unique_id: teslamate_1_outside_temp
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -198,7 +198,7 @@
 
 - sensor:
     name: Odometer
-    object_id: tesla_odometer
+    default_entity_id: sensor.tesla_odometer
     unique_id: teslamate_1_odometer
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -208,7 +208,7 @@
 
 - sensor:
     name: Est Battery Range
-    object_id: tesla_est_battery_range_km
+    default_entity_id: sensor.tesla_est_battery_range_km
     unique_id: teslamate_1_est_battery_range_km
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -218,7 +218,7 @@
 
 - sensor:
     name: Rated Battery Range
-    object_id: tesla_rated_battery_range_km
+    default_entity_id: sensor.tesla_rated_battery_range_km
     unique_id: teslamate_1_rated_battery_range_km
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -228,7 +228,7 @@
 
 - sensor:
     name: Ideal Battery Range
-    object_id: tesla_ideal_battery_range_km
+    default_entity_id: sensor.tesla_ideal_battery_range_km
     unique_id: teslamate_1_ideal_battery_range_km
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -238,7 +238,7 @@
 
 - sensor:
     name: Battery Level
-    object_id: tesla_battery_level
+    default_entity_id: sensor.tesla_battery_level
     unique_id: teslamate_1_battery_level
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -249,7 +249,7 @@
 
 - sensor:
     name: Usable Battery Level
-    object_id: tesla_usable_battery_level
+    default_entity_id: sensor.tesla_usable_battery_level
     unique_id: teslamate_1_usable_battery_level
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -259,7 +259,7 @@
 
 - sensor:
     name: Charge Energy Added
-    object_id: tesla_charge_energy_added
+    default_entity_id: sensor.tesla_charge_energy_added
     unique_id: teslamate_1_charge_energy_added
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -270,7 +270,7 @@
 
 - sensor:
     name: Charge Limit Soc
-    object_id: tesla_charge_limit_soc
+    default_entity_id: sensor.tesla_charge_limit_soc
     unique_id: teslamate_1_charge_limit_soc
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -280,7 +280,7 @@
 
 - sensor:
     name: Charger Actual Current
-    object_id: tesla_charger_actual_current
+    default_entity_id: sensor.tesla_charger_actual_current
     unique_id: teslamate_1_charger_actual_current
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -291,7 +291,7 @@
 
 - sensor:
     name: Charger Phases
-    object_id: tesla_charger_phases
+    default_entity_id: sensor.tesla_charger_phases
     unique_id: teslamate_1_charger_phases
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -300,7 +300,7 @@
 
 - sensor:
     name: Charger Power
-    object_id: tesla_charger_power
+    default_entity_id: sensor.tesla_charger_power
     unique_id: teslamate_1_charger_power
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -311,7 +311,7 @@
 
 - sensor:
     name: Charger Voltage
-    object_id: tesla_charger_voltage
+    default_entity_id: sensor.tesla_charger_voltage
     unique_id: teslamate_1_charger_voltage
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -322,7 +322,7 @@
 
 - sensor:
     name: Scheduled Charging Start Time
-    object_id: tesla_scheduled_charging_start_time
+    default_entity_id: sensor.tesla_scheduled_charging_start_time
     unique_id: teslamate_1_scheduled_charging_start_time
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -332,7 +332,7 @@
 
 - sensor:
     name: Time To Full Charge
-    object_id: tesla_time_to_full_charge
+    default_entity_id: sensor.tesla_time_to_full_charge
     unique_id: teslamate_1_time_to_full_charge
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -342,7 +342,7 @@
 
 - sensor:
     name: TPMS Pressure Front Left
-    object_id: tesla_tpms_fl
+    default_entity_id: sensor.tesla_tpms_fl
     unique_id: teslamate_1_tpms_fl
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -352,7 +352,7 @@
 
 - sensor:
     name: TPMS Pressure Front Right
-    object_id: tesla_tpms_fr
+    default_entity_id: sensor.tesla_tpms_fr
     unique_id: teslamate_1_tpms_fr
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -362,7 +362,7 @@
 
 - sensor:
     name: TPMS Pressure Rear Left
-    object_id: tesla_tpms_rl
+    default_entity_id: sensor.tesla_tpms_rl
     unique_id: teslamate_1_tpms_rl
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -372,7 +372,7 @@
 
 - sensor:
     name: TPMS Pressure Rear Right
-    object_id: tesla_tpms_rr
+    default_entity_id: sensor.tesla_tpms_rr
     unique_id: teslamate_1_tpms_rr
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -393,7 +393,7 @@
 
 - binary_sensor:
     name: Update Available
-    object_id: tesla_update_available
+    default_entity_id: binary_sensor.tesla_update_available
     unique_id: teslamate_1_update_available
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -404,7 +404,7 @@
 
 - binary_sensor:
     name: Locked
-    object_id: tesla_locked
+    default_entity_id: binary_sensor.tesla_locked
     unique_id: teslamate_1_locked
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -415,7 +415,7 @@
 
 - binary_sensor:
     name: Sentry Mode
-    object_id: tesla_sentry_mode
+    default_entity_id: binary_sensor.tesla_sentry_mode
     unique_id: teslamate_1_sentry_mode
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -426,7 +426,7 @@
 
 - binary_sensor:
     name: Windows Open
-    object_id: tesla_windows_open
+    default_entity_id: binary_sensor.tesla_windows_open
     unique_id: teslamate_1_windows_open
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -438,7 +438,7 @@
 
 - binary_sensor:
     name: Doors Open
-    object_id: tesla_doors_open
+    default_entity_id: binary_sensor.tesla_doors_open
     unique_id: teslamate_1_doors_open
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -450,7 +450,7 @@
 
 - binary_sensor:
     name: Trunk Open
-    object_id: tesla_trunk_open
+    default_entity_id: binary_sensor.tesla_trunk_open
     unique_id: teslamate_1_trunk_open
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -462,7 +462,7 @@
 
 - binary_sensor:
     name: Frunk Open
-    object_id: tesla_frunk_open
+    default_entity_id: binary_sensor.tesla_frunk_open
     unique_id: teslamate_1_frunk_open
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -474,7 +474,7 @@
 
 - binary_sensor:
     name: Is User Present
-    object_id: tesla_is_user_present
+    default_entity_id: binary_sensor.tesla_is_user_present
     unique_id: teslamate_1_is_user_present
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -486,7 +486,7 @@
 
 - binary_sensor:
     name: Is Climate On
-    object_id: tesla_is_climate_on
+    default_entity_id: binary_sensor.tesla_is_climate_on
     unique_id: teslamate_1_is_climate_on
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -497,7 +497,7 @@
 
 - binary_sensor:
     name: Is Preconditioning
-    object_id: tesla_is_preconditioning
+    default_entity_id: binary_sensor.tesla_is_preconditioning
     unique_id: teslamate_1_is_preconditioning
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -508,7 +508,7 @@
 
 - binary_sensor:
     name: Plugged In
-    object_id: tesla_plugged_in
+    default_entity_id: binary_sensor.tesla_plugged_in
     unique_id: teslamate_1_plugged_in
     availability: *teslamate_availability
     device: *teslamate_device_info
@@ -520,7 +520,7 @@
 
 - binary_sensor:
     name: Charge Port Door OPEN
-    object_id: tesla_charge_port_door_open
+    default_entity_id: binary_sensor.tesla_charge_port_door_open
     unique_id: teslamate_1_charge_port_door_open
     availability: *teslamate_availability
     device: *teslamate_device_info
